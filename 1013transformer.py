@@ -257,9 +257,9 @@ if __name__ == '__main__':
     dict_vocab = Vocab()
     
     #学習データのパス
-    dict_path = './data/dataset/10_2/10_2callresp.txt'    
-    en_train_path = './data/dataset/10_2/10_2call.txt'
-    de_train_path = './data/dataset/10_2/10_2resp.txt'
+    dict_path = './data/dataset/10_5/10_5callresp.txt'    
+    en_train_path = './data/dataset/10_5/10_5call.txt'
+    de_train_path = './data/dataset/10_5/10_5resp.txt'
 
 
     #データからID辞書を作成
@@ -275,7 +275,7 @@ if __name__ == '__main__':
     x_test, t_test = x_val, t_val
     
     #データをバッチ化する（tensor）
-    batch_size = 100
+    batch_size = 16
     train_dataloader = DataLoader((x_train, t_train),
                                   batch_size=batch_size,
                                   shuffle=True,
@@ -376,9 +376,9 @@ if __name__ == '__main__':
         
         #モデルのセーブ
         if (epoch+1) % 50 == 0:
-            torch.save(model.state_dict(), './Transformer/'
+            torch.save(model.state_dict(), './result/transformer/transformer10_5_'
                        +str(now.month)+str(now.day)
-                       +'Transformer_'+str(epoch+1))
+                       +'model_'+str(epoch+1))
           
             
         for idx, (x, t) in enumerate(test_dataloader):
@@ -402,13 +402,13 @@ if __name__ == '__main__':
 
 #result
 plt.plot(train_allloss)
-plt.savefig('./Transformer/'+str(now.month)+str(now.day)+'Transformer_trainloss.png')
+plt.savefig('./result/transformer/transformer10_5_'+str(now.month)+str(now.day)+'_trainloss.png')
 plt.plot(val_allloss)
-plt.savefig('./Transformer/'+str(now.month)+str(now.day)+'Transformer_valloss.png')
+plt.savefig('./result/transformer/transformer10_5_'+str(now.month)+str(now.day)+'_valloss.png')
 
 trainloss_txt = str(train_allloss)
 valloss_txt = str(val_allloss)
-with open('./'+str(now.month)+str(now.day)+'loss.txt', mode='w') as f:
+with open('./result/transformer/transformer10_5_'+str(now.month)+str(now.day)+'loss.txt', mode='w') as f:
     f.write('trainloss\n')
     f.write(trainloss_txt )
     f.write('\nvalloss\n')

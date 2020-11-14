@@ -147,10 +147,10 @@ if __name__ == '__main__':
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     
     
-    en_one_path = 'C:/Users/Ryo Ogasawara/OneDrive/lab/0924made/data/dataset/10_5/10_5callnum1.txt'
+    en_one_path = './data/dataset/10_5/10_5callnum1.txt'
     
-    oto_dict_path = 'C:/Users/Ryo Ogasawara/OneDrive/lab/0924made/data/dataset/10_5/10_5dict_id_10_5callresp.txt'
-    chord_dict_path = 'C:/Users/Ryo Ogasawara/OneDrive/lab/0924made/data/dataset/10_5/10_5dict_chord.txt'    
+    oto_dict_path = './result/1114dict_id_10_5callresp.txt'
+    chord_dict_path = './data/dataset/10_5/10_5dict_chord.txt'    
     
     oto_vocab = Vocab()
     chord_vocab = Chord_vocab()
@@ -175,7 +175,7 @@ if __name__ == '__main__':
     input_dim = depth_x #入力層
     hidden_dim = 128 #中間層
     output_dim = depth_t #出力層
-    maxlen = 65 #入力データの長さ
+    maxlen = 64 #入力データの長さ
     #モデルの設定
     enc = Encoder(input_dim,
                   hidden_dim,
@@ -189,10 +189,8 @@ if __name__ == '__main__':
     
     
     #学習時のモデルの読み込み
-    path_dec = ('C:/Users/Ryo Ogasawara/OneDrive/lab/0924made/data/sakusei/'
-                'learning/10_5/de/10_5decoder_300')  
-    path_enc = ('C:/Users/Ryo Ogasawara/OneDrive/lab/0924made/data/sakusei/'
-                'learning/10_5/en/10_5encoder_300')
+    path_dec = ('./result/seq2seq/seq2seq10_5_1114decoder_1')  
+    path_enc = ('./result/seq2seq/seq2seq10_5_1114encoder_1')  
     enc.load_state_dict(torch.load(path_enc, map_location=torch.device('cpu')))
     dec.load_state_dict(torch.load(path_dec, map_location=torch.device('cpu')))
     
@@ -379,9 +377,9 @@ if __name__ == '__main__':
             score_result, text_result, tick_result = create_sentence[i]
         return text_result
     
-    
+     
     #出力
-    fp_music = ('./data/sakusei/make_music/'
+    fp_music = ('./result/seq2seq/seq2seq'
                 +str(now.month)+'_'+str(now.day)+'musicmake'
                 +str(day_str)+'_'+str(kazu)+'.txt')
     fo_music = open(fp_music, "w")
@@ -422,7 +420,7 @@ if __name__ == '__main__':
         outmusic_list.append(out3)
         
     #書き出すファイル
-    foutmidi = ('./data/sakusei/make_music/'
+    foutmidi = ('./result/seq2seq/seq2seq'
                 +str(now.month)+'_'+str(now.day)+'musicmake'
                 +str(day_str)+'_'+str(kazu)+'.mid')
     

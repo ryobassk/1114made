@@ -53,7 +53,6 @@ class Vocab:
         for w in sentence:
             #辞書にない単語は未知語としてIDを振る
             if w not in self.w2i:
-                print(self.w2i)
                 idx = self.w2i['<unk>']
             #単語を辞書を用いてIDに変換
             else:
@@ -184,13 +183,13 @@ class Transformer(nn.Module):
                                 max_score, 
                                 hs,
                                 mask_source)
-                print(create_sentence)
+                #print(create_sentence)
                 create_sentence = sorted(create_sentence, key=lambda x: x[0])[::-1]
-                print(create_sentence)
+                #print(create_sentence)
                 score_result, text_result, tick_result = create_sentence[0]
                 for i in range(len(create_sentence)):
                     score_result, text_result, tick_result = create_sentence[i]
-                print(text_result)
+                #print(text_result)
                 return text_result
 
         return output
@@ -206,7 +205,7 @@ class Transformer(nn.Module):
     
     def Treesearch(self,create_sentence, now_sentence, 
                    now_score, chordset, max_score, hs, mask_source):
-        print(now_sentence)
+        #print(now_sentence)
         if len(create_sentence) >= 2:
             return
         
@@ -489,11 +488,11 @@ if __name__ == '__main__':
     '''
     1. データの準備
     '''
-    en_one_path = 'C:/Users/Ryo Ogasawara/OneDrive/lab/0924made/data/dataset/10_5/10_5callnum1.txt'
-
-    oto_dict_path = 'C:/Users/Ryo Ogasawara/OneDrive/lab/0924made/data/sakusei/datamake/01022dict_id_10_2callresp.txt'
-    chord_dict_path = 'C:/Users/Ryo Ogasawara/OneDrive/lab/0924made/data/dataset/10_5/10_5dict_chord.txt'
-
+    en_one_path = './data/dataset/10_5/10_5callnum1.txt'
+    
+    oto_dict_path = './result/1114dict_id_10_5callresp.txt'
+    chord_dict_path = './data/dataset/10_5/10_5dict_chord.txt'
+    
     oto_vocab = Vocab()
     chord_vocab = Chord_vocab()
 
@@ -523,8 +522,7 @@ if __name__ == '__main__':
                         maxlen=65,
                         device=device).to(device)
 
-    path_model =('C:/Users/Ryo Ogasawara/OneDrive/lab/0924made/Transformer/'
-                 '1020Transformer_100')
+    path_model =('./result/transformer/transformer10_5_1114model_1')
     model.load_state_dict(torch.load(path_model, map_location=torch.device('cpu')))
 
     day_str = '10_5'
@@ -542,8 +540,8 @@ if __name__ == '__main__':
 
 
     #出力
-    fp_music = ('./data/sakusei/make_music/'
-                +str(now.month)+'_'+str(now.day)+'Amusicmake'
+    fp_music = ('./result/transformer/transformer'
+                +str(now.month)+'_'+str(now.day)+'musicmake'
                 +str(day_str)+'_'+str(kazu)+'.txt')
     fo_music = open(fp_music, "w")
     for x, _ in test_dataloader:
@@ -584,8 +582,8 @@ if __name__ == '__main__':
         outmusic_list.append(out3)
 
     #書き出すファイル
-    foutmidi = ('./data/sakusei/make_music/'
-                +str(now.month)+'_'+str(now.day)+'Amusicmake'
+    foutmidi = ('./result/transformer/transformer'
+                +str(now.month)+'_'+str(now.day)+'musicmake'
                 +str(day_str)+'_'+str(kazu)+'.mid')
 
     #midiの作成、４分音符を480tick、BPM=160と設定

@@ -79,9 +79,9 @@ if __name__ == '__main__':
     dict_vocab = Vocab()
     
     #学習データのパス
-    dict_path = 'C:/Users/Ryo Ogasawara/OneDrive/lab/0924made/data/dataset/10_2/10_2callresp.txt'    
-    en_train_path = 'C:/Users/Ryo Ogasawara/OneDrive/lab/0924made/data/dataset/10_2/10_2call.txt'
-    de_train_path = 'C:/Users/Ryo Ogasawara/OneDrive/lab/0924made/data/dataset/10_2/10_2resp.txt'
+    dict_path = './data/dataset/10_5/10_5callresp.txt'    
+    en_train_path = './data/dataset/10_5/10_5call.txt'
+    de_train_path = './data/dataset/10_5/10_5resp.txt'
 
 
     #データからID辞書を作成
@@ -104,7 +104,7 @@ if __name__ == '__main__':
     x_test, t_test = x_val, t_val
 
     #データをバッチ化する（tensor）
-    batch_size = 100
+    batch_size = 16
     train_dataloader = DataLoader((x_train, t_train),
                                   batch_size=batch_size,
                                   shuffle=True,
@@ -129,7 +129,7 @@ if __name__ == '__main__':
     input_dim = depth_x #入力層
     hidden_dim = 128 #中間層
     output_dim = depth_t #出力層
-    maxlen = 65 #入力データの長さ
+    maxlen = 64 #入力データの長さ
     #モデルの設定
     enc = Encoder(input_dim,
                   hidden_dim,
@@ -256,9 +256,9 @@ if __name__ == '__main__':
 
         #モデルのセーブ
         if (epoch+1) % 50 == 0:
-            torch.save(enc.state_dict(), './'+str(now.month)+str(now.day)
+            torch.save(enc.state_dict(), './result/attention/attention10_5_'+str(now.month)+str(now.day)
                        +'encoder_'+str(epoch+1))
-            torch.save(dec.state_dict(), './'+str(now.month)+str(now.day)
+            torch.save(dec.state_dict(), './result/attention/attention10_5_'+str(now.month)+str(now.day)
                        +'decoder_'+str(epoch+1))
             
         #テストデータでの検証
@@ -283,13 +283,13 @@ if __name__ == '__main__':
 
 #result
 plt.plot(train_allloss)
-plt.savefig('./'+str(now.month)+str(now.day)+'trainloss.png')
+plt.savefig('./result/attention/attention10_5_'+str(now.month)+str(now.day)+'trainloss.png')
 plt.plot(val_allloss)
-plt.savefig('./'+str(now.month)+str(now.day)+'valloss.png')
+plt.savefig('./result/attention/attention10_5_'+str(now.month)+str(now.day)+'valloss.png')
 
 trainloss_txt = str(train_allloss)
 valloss_txt = str(val_allloss)
-with open('./'+str(now.month)+str(now.day)+'loss.txt', mode='w') as f:
+with open('./result/attention/attention10_5_'+str(now.month)+str(now.day)+'loss.txt', mode='w') as f:
     f.write('trainloss\n')
     f.write(trainloss_txt )
     f.write('\nvalloss\n')

@@ -152,10 +152,10 @@ if __name__ == '__main__':
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     
     
-    en_one_path = 'C:/Users/Ryo Ogasawara/OneDrive/lab/0924made/data/dataset/10_5/10_5callnum1.txt'
+    en_one_path = './data/dataset/10_5/10_5callnum1.txt'
     
-    oto_dict_path = 'C:/Users/Ryo Ogasawara/OneDrive/lab/0924made/data/dataset/10_5/10_5dict_id_10_5callresp.txt'
-    chord_dict_path = 'C:/Users/Ryo Ogasawara/OneDrive/lab/0924made/data/dataset/10_5/10_5dict_chord.txt'    
+    oto_dict_path = './result/1114dict_id_10_5callresp.txt'
+    chord_dict_path = './data/dataset/10_5/10_5dict_chord.txt'      
     
     oto_vocab = Vocab()
     chord_vocab = Chord_vocab()
@@ -194,10 +194,8 @@ if __name__ == '__main__':
     
     #学習時のモデルの読み込み
     
-    path_dec = ('C:/Users/Ryo Ogasawara/OneDrive/lab/0924made/data/sakusei/learning/'
-                'Attention/1013Atttention_decoder_300')  
-    path_enc = ('C:/Users/Ryo Ogasawara/OneDrive/lab/0924made/data/sakusei/learning/'
-                'Attention/1013Atttention_encoder_300')
+    path_dec = ('./result/attention/attention10_5_1114decoder_1')  
+    path_enc = ('./result/attention/attention10_5_1114encoder_1')
     enc.load_state_dict(torch.load(path_enc, map_location=torch.device('cpu')))
     dec.load_state_dict(torch.load(path_dec, map_location=torch.device('cpu')))
     
@@ -385,8 +383,8 @@ if __name__ == '__main__':
     
     
     #出力
-    fp_music = ('./data/sakusei/make_music/'
-                +str(now.month)+'_'+str(now.day)+'Amusicmake'
+    fp_music = ('./result/attention/attention'
+                +str(now.month)+'_'+str(now.day)+'musicmake'
                 +str(day_str)+'_'+str(kazu)+'.txt')
     fo_music = open(fp_music, "w")
     for x, _ in test_dataloader:
@@ -425,8 +423,8 @@ if __name__ == '__main__':
         outmusic_list.append(out3)
         
     #書き出すファイル
-    foutmidi = ('./data/sakusei/make_music/'
-                +str(now.month)+'_'+str(now.day)+'Amusicmake'
+    foutmidi = ('./result/attention/attention'
+                +str(now.month)+'_'+str(now.day)+'musicmake'
                 +str(day_str)+'_'+str(kazu)+'.mid')
     
     #midiの作成、４分音符を480tick、BPM=160と設定

@@ -34,13 +34,13 @@ class Vocab(object):
         self.i2w = {i: w for w, i in self.w2i.items()}
         
         #辞書の出力
-        import datetime
-        import pathlib
-        p_file = pathlib.Path(path)
-        now = datetime.datetime.now()
-        fdict_id = open('./data/sakusei/datamake/'+str(now.month)+str(now.day)+'dict_id_'+p_file.stem+'.txt', 'w')
-        for key,atai in self.i2w.items():
-            fdict_id.write(str(key)+'\t'+str(atai)+'\n')
+        #import datetime
+        #import pathlib
+        #p_file = pathlib.Path(path)
+        #now = datetime.datetime.now()
+        #fdict_id = open('./result/'+str(now.month)+str(now.day)+'dict_id_'+p_file.stem+'.txt', 'w')
+        #for key,atai in self.i2w.items():
+            #fdict_id.write(str(key)+'\t'+str(atai)+'\n')
         
     #ファイルの読み込み、全体をIDに変換
     def transform(self, path, bos=False, eos=False):
