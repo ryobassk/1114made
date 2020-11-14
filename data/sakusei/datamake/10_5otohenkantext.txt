@@ -1,0 +1,12 @@
+ start-start:0  start-end:480  sabun:-480
+
+ start-start:480  start-end:480  sabun:0
+
+ start-start:0  start-end:960  sabun:-960
+
+ start-start:960  start-end:960  sabun:0
+
+ start-start:0  start-end:1920  sabun:-1920
+
+ start-start:1920  start-end:1920  sabun:0
+
