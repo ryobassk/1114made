@@ -89,6 +89,20 @@ if __name__ == '__main__':
     #テストデータと訓練データに分ける
     x_train, x_val, t_train, t_val = train_test_split(x_data, t_data, test_size=0.1, shuffle=True)
     x_test, t_test = x_val, t_val
+    
+    trainprint = dict_vocab.id2seq(x_train)
+    testprint = dict_vocab.id2seq(x_test)
+    with open('./result/seq2seq/seq2seq10_5_'+str(now.month)+str(now.day)+'testdata.txt', mode='w') as f:
+        for i in testprint:
+            for k in i:
+                f.write(k)
+            f.write('\n')
+    
+    with open('./result/seq2seq/seq2seq10_5_'+str(now.month)+str(now.day)+'traindata.txt', mode='w') as f:
+        for i in trainprint:
+            for k in i:
+                f.write(k)
+            f.write('\n')
 
     #データをバッチ化する（tensor）
     batch_size = 16
@@ -211,7 +225,7 @@ if __name__ == '__main__':
                               use_teacher_forcing=False) 
         return preds
 
-    epochs = 10#30
+    epochs = 700#30
     train_allloss=[]
     val_allloss=[]
     for epoch in range(epochs):
@@ -245,7 +259,7 @@ if __name__ == '__main__':
         ), '\n')
         
         #モデルのセーブ
-        if (epoch+1) % 10 == 0:
+        if (epoch+1) % 50 == 0:
             torch.save(enc.state_dict(), './result/seq2seq/seq2seq10_5_'+str(now.month)+str(now.day)
                        +'encoder_'+str(epoch+1))
             torch.save(dec.state_dict(), './result/seq2seq/seq2seq10_5_'+str(now.month)+str(now.day)
@@ -280,7 +294,12 @@ plt.savefig('./result/seq2seq/seq2seq10_5_'+str(now.month)+str(now.day)+'valloss
 trainloss_txt = str(train_allloss)
 valloss_txt = str(val_allloss)
 with open('./result/seq2seq/seq2seq10_5_'+str(now.month)+str(now.day)+'loss.txt', mode='w') as f:
+    f.write('starttime'+str(now)+'\n')
+    f.write('endtime'+str(datetime.datetime.now())+'\n')
     f.write('trainloss\n')
     f.write(trainloss_txt )
     f.write('\nvalloss\n')
     f.write(valloss_txt )
+
+print('starttime',now)
+print('endtime',datetime.datetime.now())
