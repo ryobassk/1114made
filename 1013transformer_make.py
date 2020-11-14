@@ -540,7 +540,7 @@ if __name__ == '__main__':
 
 
     #出力
-    fp_music = ('./result/transformer/transformer'
+    fp_music = ('./result/transformer/music/transformer'
                 +str(now.month)+'_'+str(now.day)+'musicmake'
                 +str(day_str)+'_'+str(kazu)+'.txt')
     fo_music = open(fp_music, "w")
@@ -582,7 +582,7 @@ if __name__ == '__main__':
         outmusic_list.append(out3)
 
     #書き出すファイル
-    foutmidi = ('./result/transformer/transformer'
+    foutmidi = ('./result/transformer/music/transformer'
                 +str(now.month)+'_'+str(now.day)+'musicmake'
                 +str(day_str)+'_'+str(kazu)+'.mid')
 

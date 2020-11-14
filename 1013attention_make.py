@@ -383,7 +383,7 @@ if __name__ == '__main__':
     
     
     #出力
-    fp_music = ('./result/attention/attention'
+    fp_music = ('./result/attention/music/attention'
                 +str(now.month)+'_'+str(now.day)+'musicmake'
                 +str(day_str)+'_'+str(kazu)+'.txt')
     fo_music = open(fp_music, "w")
@@ -423,7 +423,7 @@ if __name__ == '__main__':
         outmusic_list.append(out3)
         
     #書き出すファイル
-    foutmidi = ('./result/attention/attention'
+    foutmidi = ('./result/attention/music/attention'
                 +str(now.month)+'_'+str(now.day)+'musicmake'
                 +str(day_str)+'_'+str(kazu)+'.mid')
     

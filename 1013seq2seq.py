@@ -260,9 +260,9 @@ if __name__ == '__main__':
         
         #モデルのセーブ
         if (epoch+1) % 50 == 0:
-            torch.save(enc.state_dict(), './result/seq2seq/seq2seq10_5_'+str(now.month)+str(now.day)
+            torch.save(enc.state_dict(), './result/seq2seq/learning/seq2seq10_5_'+str(now.month)+str(now.day)
                        +'encoder_'+str(epoch+1))
-            torch.save(dec.state_dict(), './result/seq2seq/seq2seq10_5_'+str(now.month)+str(now.day)
+            torch.save(dec.state_dict(), './result/seq2seq/learning/seq2seq10_5_'+str(now.month)+str(now.day)
                        +'decoder_'+str(epoch+1))
 
         #テストデータでの検証

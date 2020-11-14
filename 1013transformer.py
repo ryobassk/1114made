@@ -389,7 +389,7 @@ if __name__ == '__main__':
         
         #モデルのセーブ
         if (epoch+1) % 50 == 0:
-            torch.save(model.state_dict(), './result/transformer/transformer10_5_'
+            torch.save(model.state_dict(), './result/transformer/learning/transformer10_5_'
                        +str(now.month)+str(now.day)
                        +'model_'+str(epoch+1))
           
