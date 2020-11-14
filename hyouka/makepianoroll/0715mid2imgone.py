@@ -21,7 +21,7 @@ if __name__ == '__main__':
     outfilepath = './result/'
     midpath = '.mid'
     jpgpath = '.jpg'
-    file_list = glob.glob('C:/Users/Ryo Ogasawara/OneDrive/lab/0924made/hyouka/makepianoroll/makemidi/*.mid')
+    file_list = glob.glob('./makemidi/*.mid')
     for i in range(len(file_list)):
         filename.append(os.path.splitext(os.path.basename(file_list[i]))[0])
     

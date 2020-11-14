@@ -104,6 +104,20 @@ if __name__ == '__main__':
     x_train, x_val, t_train, t_val = train_test_split(x_data, t_data, test_size=0.1, shuffle=True)
     x_test, t_test = x_val, t_val
     
+    trainprint = dict_vocab.id2seq(x_train)
+    testprint = dict_vocab.id2seq(x_test)
+    with open('./result/attention/attention10_5_'+str(now.month)+str(now.day)+'testdata.txt', mode='w') as f:
+        for i in testprint:
+            for k in i:
+                f.write(k)
+            f.write('\n')
+    
+    with open('./result/attention/attention10_5_'+str(now.month)+str(now.day)+'traindata.txt', mode='w') as f:
+        for i in trainprint:
+            for k in i:
+                f.write(k)
+            f.write('\n')
+    
     #データをバッチ化する（tensor）
     batch_size = 16
     train_dataloader = DataLoader((x_train, t_train),
@@ -289,8 +303,13 @@ plt.savefig('./result/attention/attention10_5_'+str(now.month)+str(now.day)+'val
 
 trainloss_txt = str(train_allloss)
 valloss_txt = str(val_allloss)
-with open('./result/attention/attention10_5_'+str(now.month)+str(now.day)+'loss.txt', mode='w') as f:
+with open('./result/seq2seq/seq2seq10_5_'+str(now.month)+str(now.day)+'loss.txt', mode='w') as f:
+    f.write('starttime'+str(now)+'\n')
+    f.write('endtime'+str(datetime.datetime.now())+'\n')
     f.write('trainloss\n')
     f.write(trainloss_txt )
     f.write('\nvalloss\n')
     f.write(valloss_txt )
+
+print('starttime',now)
+print('endtime',datetime.datetime.now())

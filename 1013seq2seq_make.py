@@ -386,7 +386,7 @@ if __name__ == '__main__':
     for x, _ in test_dataloader:
         outmusic = [x.reshape(-1).tolist()]
         
-        for index in range(0,11):
+        for index in range(0,2):
             print("start")
             out = test_step(x, index)
             out.pop(0)

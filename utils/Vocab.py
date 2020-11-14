@@ -59,6 +59,15 @@ class Vocab(object):
             output.append(self.encode(sentence))
 
         return output
+    
+    #ファイルの読み込み、全体をbunに変換
+    def id2seq(self, datas_id):
+        output = []
+
+        for sentence in datas_id:
+            output.append(self.decode(sentence))
+        
+        return output
         
         
     #単語をIDに変換
