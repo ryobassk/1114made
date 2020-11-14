@@ -101,9 +101,9 @@ if __name__ == '__main__':
         return (x, t)
 
     #テストデータと訓練データに分ける
-    x_train, x_val, t_train, t_val = train_test_split(x_data, t_data, test_size=1, shuffle=True)
+    x_train, x_val, t_train, t_val = train_test_split(x_data, t_data, test_size=0.1, shuffle=True)
     x_test, t_test = x_val, t_val
-
+    
     #データをバッチ化する（tensor）
     batch_size = 16
     train_dataloader = DataLoader((x_train, t_train),
@@ -162,7 +162,6 @@ if __name__ == '__main__':
             len_target_sequences = target.size(0)
         else:
             len_target_sequences = maxlen
-
         hs, states = enc(source)
 
         y = torch.ones((1, batch_size),
@@ -172,7 +171,7 @@ if __name__ == '__main__':
                               batch_size,
                               output_dim),
                               device=device)
-
+        
         for t in range(len_target_sequences):
             out, states = dec(y, hs, states, source=source)
             output[t] = out

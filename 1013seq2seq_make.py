@@ -189,10 +189,10 @@ if __name__ == '__main__':
     
     
     #学習時のモデルの読み込み
-    path_dec = ('./result/seq2seq/seq2seq10_5_1114decoder_1')  
-    path_enc = ('./result/seq2seq/seq2seq10_5_1114encoder_1')  
-    enc.load_state_dict(torch.load(path_enc, map_location=torch.device('cpu')))
-    dec.load_state_dict(torch.load(path_dec, map_location=torch.device('cpu')))
+    path_dec = ('./result/seq2seq/seq2seq10_5_1114decoder_10')  
+    path_enc = ('./result/seq2seq/seq2seq10_5_1114encoder_10')  
+    enc.load_state_dict(torch.load(path_enc, map_location=torch.device(device)))
+    dec.load_state_dict(torch.load(path_dec, map_location=torch.device(device)))
     
     day_str = '10_5'
     kazu = '2'

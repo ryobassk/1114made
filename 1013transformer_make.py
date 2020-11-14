@@ -523,7 +523,7 @@ if __name__ == '__main__':
                         device=device).to(device)
 
     path_model =('./result/transformer/transformer10_5_1114model_1')
-    model.load_state_dict(torch.load(path_model, map_location=torch.device('cpu')))
+    model.load_state_dict(torch.load(path_model, map_location=torch.device(device)))
 
     day_str = '10_5'
     kazu = '2'

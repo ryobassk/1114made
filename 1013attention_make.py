@@ -196,8 +196,8 @@ if __name__ == '__main__':
     
     path_dec = ('./result/attention/attention10_5_1114decoder_1')  
     path_enc = ('./result/attention/attention10_5_1114encoder_1')
-    enc.load_state_dict(torch.load(path_enc, map_location=torch.device('cpu')))
-    dec.load_state_dict(torch.load(path_dec, map_location=torch.device('cpu')))
+    enc.load_state_dict(torch.load(path_enc, map_location=torch.device(device)))
+    dec.load_state_dict(torch.load(path_dec, map_location=torch.device(device)))
     
     day_str = '10_5'
     kazu = '2'

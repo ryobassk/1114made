@@ -87,11 +87,11 @@ if __name__ == '__main__':
     t_data = dict_vocab.transform(de_train_path, eos=True)
     
     #テストデータと訓練データに分ける
-    x_train, x_val, t_train, t_val = train_test_split(x_data, t_data, test_size=1, shuffle=True)
+    x_train, x_val, t_train, t_val = train_test_split(x_data, t_data, test_size=0.1, shuffle=True)
     x_test, t_test = x_val, t_val
 
     #データをバッチ化する（tensor）
-    batch_size = 64
+    batch_size = 16
     train_dataloader = DataLoader((x_train, t_train),
                                   batch_size=batch_size,
                                   shuffle=True,
@@ -117,7 +117,7 @@ if __name__ == '__main__':
     input_dim = depth_x #入力層
     hidden_dim = 128 #中間層
     output_dim = depth_t #出力層
-    maxlen = 16 #入力データの長さ
+    maxlen = 64 #入力データの長さ
     #モデルの設定
     enc = Encoder(input_dim,
                   hidden_dim,
@@ -211,7 +211,7 @@ if __name__ == '__main__':
                               use_teacher_forcing=False) 
         return preds
 
-    epochs = 1#30
+    epochs = 10#30
     train_allloss=[]
     val_allloss=[]
     for epoch in range(epochs):
@@ -245,7 +245,7 @@ if __name__ == '__main__':
         ), '\n')
         
         #モデルのセーブ
-        if (epoch+1) % 1 == 0:
+        if (epoch+1) % 10 == 0:
             torch.save(enc.state_dict(), './result/seq2seq/seq2seq10_5_'+str(now.month)+str(now.day)
                        +'encoder_'+str(epoch+1))
             torch.save(dec.state_dict(), './result/seq2seq/seq2seq10_5_'+str(now.month)+str(now.day)
