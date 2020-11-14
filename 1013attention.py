@@ -238,7 +238,7 @@ if __name__ == '__main__':
     train_allloss=[]
     val_allloss=[]
     for epoch in range(epochs):
-        print('-' * 20)
+        print('-' * 30)
         print('epoch: {}'.format(epoch+1))
 
         train_loss = 0.
