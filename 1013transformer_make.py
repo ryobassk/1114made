@@ -488,7 +488,10 @@ if __name__ == '__main__':
     '''
     1. データの準備
     '''
-    en_one_path = './data/dataset/10_5/10_5callnum1.txt'
+    en_one_path = './testinput.txt'
+    kazu = 'test_epoc50'
+    path_model =('./result/transformer/learning/transformer10_5_1114model_50')
+    
     
     oto_dict_path = './result/1114dict_id_10_5callresp.txt'
     chord_dict_path = './data/dataset/10_5/10_5dict_chord.txt'
@@ -522,11 +525,10 @@ if __name__ == '__main__':
                         maxlen=65,
                         device=device).to(device)
 
-    path_model =('./result/transformer/transformer10_5_1114model_1')
     model.load_state_dict(torch.load(path_model, map_location=torch.device(device)))
 
     day_str = '10_5'
-    kazu = '2'
+    
 
 
     '''

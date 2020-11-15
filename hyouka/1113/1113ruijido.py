@@ -145,7 +145,7 @@ if __name__ == '__main__':
         # ファイルに保存
         fig.savefig(path_plt)
     
-    path_csv = './result/gakkai_result512.csv'
+    path_csv = './result/1116_result512.csv'
     with open(path_csv, 'w') as f0:
         for i in range(len(TM_graph_matome)):
             writer = csv.writer(f0)

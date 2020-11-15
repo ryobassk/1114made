@@ -147,7 +147,10 @@ if __name__ == '__main__':
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     
     
-    en_one_path = './data/dataset/10_5/10_5callnum1.txt'
+    en_one_path = './testinput.txt'
+    kazu = 'test_epoc50'
+    path_dec = ('./result/seq2seq/learning/seq2seq10_5_1114decoder_50')  
+    path_enc = ('./result/seq2seq/learning/seq2seq10_5_1114encoder_50')
     
     oto_dict_path = './result/1114dict_id_10_5callresp.txt'
     chord_dict_path = './data/dataset/10_5/10_5dict_chord.txt'    
@@ -189,13 +192,10 @@ if __name__ == '__main__':
     
     
     #学習時のモデルの読み込み
-    path_dec = ('./result/seq2seq/seq2seq10_5_1114decoder_10')  
-    path_enc = ('./result/seq2seq/seq2seq10_5_1114encoder_10')  
     enc.load_state_dict(torch.load(path_enc, map_location=torch.device(device)))
     dec.load_state_dict(torch.load(path_dec, map_location=torch.device(device)))
     
     day_str = '10_5'
-    kazu = '2'
 
 
 
@@ -313,7 +313,7 @@ if __name__ == '__main__':
         if len(select_oto)<3:
             samples = np.random.choice(select_oto, len(select_oto),  p=kouho_oto, replace=False)
         else:
-            samples = np.random.choice(select_oto, 3,  p=kouho_oto, replace=False)
+            samples = np.random.choice(select_oto, 2,  p=kouho_oto, replace=False)
         index=0
         for p in samples:
             # 現在生成中の文に一文字追加する

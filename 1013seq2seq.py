@@ -106,7 +106,6 @@ if __name__ == '__main__':
 
     #データをバッチ化する（tensor）
     batch_size = 16
-    retwer
     train_dataloader = DataLoader((x_train, t_train),
                                   batch_size=batch_size,
                                   shuffle=True,
@@ -226,7 +225,7 @@ if __name__ == '__main__':
                               use_teacher_forcing=False) 
         return preds
 
-    epochs = 700#30
+    epochs = 30#700
     train_allloss=[]
     val_allloss=[]
     for epoch in range(epochs):
@@ -260,7 +259,7 @@ if __name__ == '__main__':
         ), '\n')
         
         #モデルのセーブ
-        if (epoch+1) % 50 == 0:
+        if (epoch+1) % 1 == 0:
             torch.save(enc.state_dict(), './result/seq2seq/learning/seq2seq10_5_'+str(now.month)+str(now.day)
                        +'encoder_'+str(epoch+1))
             torch.save(dec.state_dict(), './result/seq2seq/learning/seq2seq10_5_'+str(now.month)+str(now.day)
