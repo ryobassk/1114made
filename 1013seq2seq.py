@@ -95,17 +95,18 @@ if __name__ == '__main__':
     with open('./result/seq2seq/seq2seq10_5_'+str(now.month)+str(now.day)+'testdata.txt', mode='w') as f:
         for i in testprint:
             for k in i:
-                f.write(k)
+                f.write(k+' ')
             f.write('\n')
     
     with open('./result/seq2seq/seq2seq10_5_'+str(now.month)+str(now.day)+'traindata.txt', mode='w') as f:
         for i in trainprint:
             for k in i:
-                f.write(k)
+                f.write(k+' ')
             f.write('\n')
 
     #データをバッチ化する（tensor）
     batch_size = 16
+    retwer
     train_dataloader = DataLoader((x_train, t_train),
                                   batch_size=batch_size,
                                   shuffle=True,
