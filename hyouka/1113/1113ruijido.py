@@ -74,7 +74,7 @@ if __name__ == '__main__':
     
     #フレーズ生成結果ピアノロール画像を読み込み
     makeimg_num =[]
-    print('入力ファイル')
+    print('入力ファイル',str(len(makeimg_name))+'kyoku')
     for i in range(len(makeimg_name)): 
         print(makeimg_name[i])
         #フレーズ生成結果ピアノロール画像を読み込み
