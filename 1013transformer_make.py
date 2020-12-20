@@ -206,7 +206,7 @@ class Transformer(nn.Module):
     def Treesearch(self,create_sentence, now_sentence, 
                    now_score, chordset, max_score, hs, mask_source):
         #print(now_sentence)
-        if len(create_sentence) >= 2:
+        if len(create_sentence) >= 5:
             return
         
         # 現在の単語を取得する
@@ -312,7 +312,7 @@ class Transformer(nn.Module):
         if len(select_oto)<2:
             samples = np.random.choice(select_oto, len(select_oto),  p=kouho_oto, replace=False)
         else:
-            samples = np.random.choice(select_oto, 2,  p=kouho_oto, replace=False)
+            samples = np.random.choice(select_oto, 3,  p=kouho_oto, replace=False)
         index=0
         for p in samples:
             # 現在生成中の文に一文字追加する
@@ -488,7 +488,7 @@ if __name__ == '__main__':
     '''
     1. データの準備
     '''
-    en_one_path = './testinput.txt'
+    en_one_path = './traininput.txt'
     kazu = 'test_epoc50'
     path_model =('./result/transformer/learning/transformer10_5_1114model_50')
     

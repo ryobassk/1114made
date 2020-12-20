@@ -147,10 +147,10 @@ if __name__ == '__main__':
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     
     
-    en_one_path = './testinput.txt'
+    en_one_path = './traininput.txt'
     kazu = 'test_epoc50'
-    path_dec = ('./result/seq2seq/learning/seq2seq10_5_1114decoder_50')  
-    path_enc = ('./result/seq2seq/learning/seq2seq10_5_1114encoder_50')
+    path_dec = ('./result/seq2seq/learning/seq2seq10_5_1114decoder_100')
+    path_enc = ('./result/seq2seq/learning/seq2seq10_5_1114encoder_100')
     
     oto_dict_path = './result/1114dict_id_10_5callresp.txt'
     chord_dict_path = './data/dataset/10_5/10_5dict_chord.txt'    
@@ -206,7 +206,7 @@ if __name__ == '__main__':
     # 再帰関数の木探索
     def Treesearch(create_sentence, now_sentence, 
                    now_score, states_h, chordset, max_score):
-        if len(create_sentence) >= 20:
+        if len(create_sentence) >= 5:
             return
         
         # 現在の単語を取得する
@@ -313,7 +313,7 @@ if __name__ == '__main__':
         if len(select_oto)<3:
             samples = np.random.choice(select_oto, len(select_oto),  p=kouho_oto, replace=False)
         else:
-            samples = np.random.choice(select_oto, 2,  p=kouho_oto, replace=False)
+            samples = np.random.choice(select_oto, 3,  p=kouho_oto, replace=False)
         index=0
         for p in samples:
             # 現在生成中の文に一文字追加する
