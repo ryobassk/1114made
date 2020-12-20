@@ -206,7 +206,7 @@ class Transformer(nn.Module):
     def Treesearch(self,create_sentence, now_sentence, 
                    now_score, chordset, max_score, hs, mask_source):
         #print(now_sentence)
-        if len(create_sentence) >= 5:
+        if len(create_sentence) >= 25:
             return
         
         # 現在の単語を取得する
@@ -491,7 +491,7 @@ if __name__ == '__main__':
     en_one_path = './traininput.txt'
     kazu = 'test_epoc50'
     #path_model =('./result/transformer/learning/transformer10_5_1114model_150')
-    path_model =('./result/transformer/learning/transformer10_5_1220model_25')
+    path_model =('./result/transformer/learning/transformer10_5_1220model_15')
     
     
     oto_dict_path = './result/1114dict_id_10_5callresp.txt'
