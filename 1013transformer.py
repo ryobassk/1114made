@@ -357,7 +357,7 @@ if __name__ == '__main__':
         preds = model(x)
         return preds
 
-    epochs = 700
+    epochs =50
     train_allloss=[]
     val_allloss=[]
     for epoch in range(epochs):
@@ -388,7 +388,7 @@ if __name__ == '__main__':
         val_allloss.append(val_loss)
         
         #モデルのセーブ
-        if (epoch+1) % 50 == 0:
+        if (epoch+1) % 5 == 0:
             torch.save(model.state_dict(), './result/transformer/learning/transformer10_5_'
                        +str(now.month)+str(now.day)
                        +'model_'+str(epoch+1))
